@@ -1,11 +1,11 @@
 {
   "name": "@clarkq088/angular2gridster",
-  "version": "14.0.0",
+  "version": "13.0.2",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build angular2gridster --configuration production",
+    "build": "ng build @clarkq088/angular2gridster --configuration production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -22,8 +22,8 @@
     "url": "git+ssh://git@github.com/swiety85/angular2gridster.git"
   },
   "author": {
-    "name": "Damian Wajdlich",
-    "email": "swiety85@gmail.com"
+    "name": "Ivan Stetsenko",
+    "email": "dev.ivan.stetsenko@gmail.com"
   },
   "keywords": [
     "gridster",

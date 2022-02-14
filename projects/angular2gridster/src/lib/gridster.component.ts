@@ -12,8 +12,7 @@ import {
     ChangeDetectionStrategy,
     HostBinding,
     ViewEncapsulation,
-    ViewChildren,
-    QueryList
+    QueryList, ContentChildren
 } from '@angular/core';
 import {
     Observable,
@@ -91,7 +90,7 @@ export class GridsterComponent implements OnInit, AfterContentInit, OnDestroy {
     @Input() parent: GridsterComponent;
 
     @ViewChild('positionHighlight', { static: true }) $positionHighlight;
-    @ViewChildren(GridsterItemComponent) gridsterItems: QueryList<GridsterItemComponent>;
+    @ContentChildren(GridsterItemComponent) gridsterItems: QueryList<GridsterItemComponent>;
 
     @HostBinding('class.gridster--dragging') isDragging = false;
     @HostBinding('class.gridster--resizing') isResizing = false;
