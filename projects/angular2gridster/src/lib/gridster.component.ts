@@ -32,8 +32,8 @@ import { GridsterPrototypeService } from './gridster-prototype/gridster-prototyp
 import { GridsterItemPrototypeDirective } from './gridster-prototype/gridster-item-prototype.directive';
 import { GridListItem } from './gridList/GridListItem';
 import { GridsterOptions } from './GridsterOptions';
-import {GridsterItemComponent} from './gridster-item/gridster-item.component';
-import {DraggableEvent} from './utils/DraggableEvent';
+import { GridsterItemComponent } from './gridster-item/gridster-item.component';
+import { DraggableEvent } from './utils/DraggableEvent';
 
 @Component({
     selector: 'ngx-gridster',
