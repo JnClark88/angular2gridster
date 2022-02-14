@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Inject, Host, Input, Output,
     EventEmitter, SimpleChanges, OnChanges, OnDestroy, HostBinding,
     ChangeDetectionStrategy, AfterViewInit, NgZone, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { GridsterService } from '../gridster.service';
 import { GridsterPrototypeService } from '../gridster-prototype/gridster-prototype.service';
@@ -238,6 +238,7 @@ export class GridsterItemComponent implements OnInit, OnChanges, AfterViewInit, 
     private subscriptions: Array<Subscription> = [];
     private dragSubscriptions: Array<Subscription> = [];
     private resizeSubscriptions: Array<Subscription> = [];
+    private dragMoveObserver: Observable<DraggableEvent>
 
     constructor(private zone: NgZone,
                 private gridsterPrototypeService: GridsterPrototypeService,
@@ -499,8 +500,13 @@ export class GridsterItemComponent implements OnInit, OnChanges, AfterViewInit, 
                     });
                 });
 
+            this.dragMoveObserver = draggable.dragMove;
             this.dragSubscriptions = this.dragSubscriptions.concat([dragStartSub, dragSub, dragStopSub]);
         });
+    }
+
+    public get itemDragMoveObserver(): Observable<DraggableEvent> {
+        return this.dragMoveObserver;
     }
 
     public disableDraggable() {

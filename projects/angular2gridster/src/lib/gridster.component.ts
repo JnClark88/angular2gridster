@@ -11,13 +11,16 @@ import {
     EventEmitter,
     ChangeDetectionStrategy,
     HostBinding,
-    ViewEncapsulation
+    ViewEncapsulation,
+    ViewChildren,
+    QueryList
 } from '@angular/core';
 import {
     Observable,
     Subscription,
     fromEvent,
-    ConnectableObservable
+    ConnectableObservable,
+    merge
 } from 'rxjs';
 import { debounceTime, filter, publish } from 'rxjs/operators';
 
@@ -29,6 +32,8 @@ import { GridsterPrototypeService } from './gridster-prototype/gridster-prototyp
 import { GridsterItemPrototypeDirective } from './gridster-prototype/gridster-item-prototype.directive';
 import { GridListItem } from './gridList/GridListItem';
 import { GridsterOptions } from './GridsterOptions';
+import {GridsterItemComponent} from './gridster-item/gridster-item.component';
+import {DraggableEvent} from './utils/DraggableEvent';
 
 @Component({
     selector: 'ngx-gridster',
@@ -86,6 +91,8 @@ export class GridsterComponent implements OnInit, AfterContentInit, OnDestroy {
     @Input() parent: GridsterComponent;
 
     @ViewChild('positionHighlight', { static: true }) $positionHighlight;
+    @ViewChildren(GridsterItemComponent) gridsterItems: QueryList<GridsterItemComponent>;
+
     @HostBinding('class.gridster--dragging') isDragging = false;
     @HostBinding('class.gridster--resizing') isResizing = false;
 
@@ -288,6 +295,10 @@ export class GridsterComponent implements OnInit, AfterContentInit, OnDestroy {
 
     enable() {
         this.isDisabled = false;
+    }
+
+    gridsterChildItemsDragged(): Observable<DraggableEvent> {
+        return merge(this.gridsterItems?.itemDragMoveObserver)
     }
 
     private getScrollPositionFromParents(
