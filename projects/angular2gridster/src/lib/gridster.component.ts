@@ -298,7 +298,13 @@ export class GridsterComponent implements OnInit, AfterContentInit, OnDestroy {
     }
 
     gridsterChildItemsDragged(): Observable<DraggableEvent> {
-        return merge(...this.gridsterItems?.map(item => item.itemDragMoveObserver));
+        const items = this.gridsterItems;
+
+        if (!items.length) {
+            throw new Error('There is no gridster items found')
+        }
+
+        return merge(...items?.map(item => item.itemDragMoveObserver));
     }
 
     private getScrollPositionFromParents(
