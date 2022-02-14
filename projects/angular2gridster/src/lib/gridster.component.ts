@@ -304,7 +304,7 @@ export class GridsterComponent implements OnInit, AfterContentInit, OnDestroy {
             throw new Error('There is no gridster items found')
         }
 
-        return merge(...items?.map(item => item.itemDragMoveObserver));
+        return merge(...items.map(item => item.itemDragMoveObserver));
     }
 
     private getScrollPositionFromParents(
