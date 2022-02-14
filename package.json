@@ -1,6 +1,6 @@
 {
   "name": "@clarkq088/angular2gridster",
-  "version": "13.0.2",
+  "version": "14.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
